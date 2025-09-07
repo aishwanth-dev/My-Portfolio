@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Let's Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('media/brown-aesthetic-background-k583ryuw6p8lrv3i.jpg');
+      background-size: cover;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 300px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #aaa;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 14px;
+    }
+
+    .send-button {
+      background-color: #bebebe;
+      color: #3f3f3f;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 0 #000;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .send-button:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Let's Connect</h1>
+  <p>Got something in mind? Drop me a message below.</p>
+
+  <form action="mailto:aishwanth.dev@gmail.com" method="POST" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Your name" required>
+    <input type="email" name="Email" placeholder="Your email" required>
+    <textarea name="Message" rows="5" placeholder="Your message..." required></textarea>
+    <button type="submit" class="send-button">Send</button>
+  </form>
+</body>
+</html>
