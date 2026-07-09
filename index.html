@@ -12,11 +12,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Poppins:wght@400;600&family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== RESET ===== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    a:focus, button:focus, a:active, button:active {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* ===== BODY ===== */
@@ -55,6 +66,9 @@
       object-position: center 80%; /* Focus on middle-to-bottom part */
       transform: scale(1.25);      /* Fully zoom in */
       z-index: -1;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .gif-bg::after {
