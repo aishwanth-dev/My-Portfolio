@@ -4,163 +4,934 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aishwanth's Links</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,600&display=swap" rel="stylesheet">
+  <meta name="description" content="Aishwanth — Founder of Juskoe, Intern @omgx.ai.pvt.ltd. Connect on LinkedIn, GitHub, X, and more.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Poppins:wght@400;600&family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      background-image: url('media/brown-aesthetic-background-k583ryuw6p8lrv3i.jpg');
-      background-size: cover;
-      
-      font-family: 'Bricolage Grotesque', sans-serif;
+    /* ===== RESET ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    /* ===== BODY ===== */
+    body {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
       text-align: center;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ===== FIXED GIF BACKGROUND ===== */
+    .gif-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+      background: #09090b;
+    }
+
+    .gif-bg .bg-main {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 80%; /* Focus on middle-to-bottom part */
+      transform: scale(1.25);      /* Fully zoom in */
+      z-index: -1;
+    }
+
+    .gif-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    /* ===== LOADING SCREEN ===== */
+    /* From Uiverse.io by StealthWorm */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      display: flex;
+      width: 8rem;
+      height: 8rem;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      flex-direction: column;
+    }
+
+    .curve {
+      width: 180%;
+      height: 180%;
+      position: absolute;
+      animation: rotate 8s linear infinite;
+      fill: transparent;
+    }
+
+    .curve text {
+      letter-spacing: 20px;
+      text-transform: uppercase;
+      font: 1.5em "Fira Sans", sans-serif;
+      fill: white;
+      filter: drop-shadow(0 2px 8px black);
+    }
+
+    .blackhole {
+      z-index: -1;
+      display: flex;
+      position: absolute;
+      width: 8rem;
+      height: 8rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blackhole-circle {
+      z-index: 0;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, black 25%, white 35%, white 100%);
+      box-shadow: 0px 0px 2rem #c2babb;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .blackhole-circle::after {
+      z-index: 0;
+      position: absolute;
+      content: "";
+      display: flex;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: radial-gradient(circle at center, black 35%, white 60%, white 100%);
+      box-shadow: 0px 0px 5rem #c2babb;
+      align-items: center;
+      justify-content: center;
+      filter: blur(4px);
+      animation: pulseAnimation linear infinite 2s alternate-reverse;
+    }
+
+    .blackhole-circle::before {
+      z-index: 1;
+      content: "";
+      display: flex;
+      width: 4rem;
+      height: 4rem;
+      border: 2px solid #ffffff;
+      box-shadow: 3px 3px 10px #c2babb, inset 0 0 1rem #ffffff;
+      border-radius: 50%;
+      top: 5rem;
+      filter: blur(0.5px);
+      animation: rotate linear infinite 3s;
+    }
+
+    .blackhole-disc {
+      position: absolute;
+      z-index: 0;
+      display: flex;
+      width: 5rem;
+      height: 10rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #ffffff 80%, #353535 90%, white 100%);
+      filter: blur(1rem) brightness(130%);
+      border: 1rem solid white;
+      box-shadow: 0px 0px 3rem #d7c4be;
+      transform: rotate3d(1, 1, 1, 220deg);
+      animation: pulseAnimation2 linear infinite 2s alternate-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .blackhole-disc::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      display: flex;
+      width: 5rem;
+      height: 10rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #ffffff 80%, #353535 90%, white 100%);
+      filter: blur(3rem);
+      border: 1rem solid white;
+      box-shadow: 0px 0px 6rem #d7c4be;
+      animation: pulseAnimation linear infinite 2s alternate-reverse;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulseAnimation {
+      0% {
+        box-shadow: 0px 0px 3rem #c2babb;
+        transform: scale(1);
+      }
+      100% {
+        box-shadow: 0px 0px 5rem #c2babb;
+        transform: scale(1.09);
+      }
+    }
+
+    @keyframes pulseAnimation2 {
+      0% {
+        box-shadow: 0px 0px 3rem #c2babb;
+        transform: rotate3d(1, 1, 1, 220deg) scale(1);
+      }
+      100% {
+        box-shadow: 0px 0px 5rem #c2babb;
+        transform: rotate3d(1, 1, 1, 220deg) scale(.95);
+      }
+    }
+
+    /* ===== LINK-CLICK LOADING ===== */
+    .link-loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .link-loading-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      padding: 50px 20px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .content-wrapper.visible {
+      opacity: 1;
+    }
+
+    /* ===== GLASS PILL for profile image ===== */
+    .glass-pill-pfp {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== GLASS LINE for each text row ===== */
+    .glass-line {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      padding: 6px 22px;
+      margin: 4px 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-line-quote {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 10px 22px;
+      margin: 6px 0 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .info-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    /* ===== PROFILE IMAGE ===== */
+    .profile-section {
+      display: inline-block;
     }
 
     .profile-img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      margin-top: 50px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15), 0 0 0 6px rgba(255, 255, 255, 0.06);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
+    .profile-img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.3), 0 0 0 8px rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== NAME ===== */
     h1 {
-      margin: 10px 0 0;
-      font-size: 22px;
+      margin: 0;
+      font-size: 24px;
       font-weight: 600;
+      color: #fff;
     }
 
-    .email, .quote {
-      font-size: 14px;
-      color: #444;
-      margin: 5px 0;
+    /* ===== SHINING SUBTITLE (Founder info) ===== */
+    /* From Uiverse.io by neerajbaniwal */
+    .btn-shine {
+      display: inline-block;
+      padding: 0;
+      color: #fff;
+      background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+      background-size: 500px 100%;
+      background-position: 0;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 4s linear infinite;
+      -webkit-text-size-adjust: none;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: "Poppins", sans-serif;
     }
 
+    @-moz-keyframes shine {
+      0% { background-position: -500px; }
+      100% { background-position: 500px; }
+    }
+    @-webkit-keyframes shine {
+      0% { background-position: -500px; }
+      100% { background-position: 500px; }
+    }
+    @-o-keyframes shine {
+      0% { background-position: -500px; }
+      100% { background-position: 500px; }
+    }
+    @keyframes shine {
+      0% { background-position: -500px; }
+      100% { background-position: 500px; }
+    }
+
+    /* ===== EMAIL (plain, no glow) ===== */
+    .email {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.55);
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+    }
+
+    /* ===== QUOTE ===== */
+    .quote {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      margin: 0;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* ===== GRADIENT GLOW "LET'S CONNECT" BUTTON ===== */
+    /* From Uiverse.io by Itskrish01 */
+    .connect-btn-wrapper {
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    .connect-btn {
+      position: relative;
+      background: rgb(38, 38, 38);
+      border-radius: 9999px;
+      padding: 2px;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .connect-btn .glow-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 9999px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .connect-btn .glow-bg .glow-blob {
+      display: block;
+      transform: translate(-50%, -33%);
+      width: 96px;
+      height: 96px;
+      filter: blur(20px);
+      background: linear-gradient(135deg, rgb(122, 105, 249), rgb(242, 99, 120), rgb(245, 131, 63));
+    }
+
+    .connect-btn .glow-border {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      animation: 10s ease-in-out 0s infinite alternate none running border-glow-translate;
+    }
+
+    .connect-btn .glow-border .glow-streak {
+      display: block;
+      height: 100%;
+      width: 48px;
+      filter: blur(20px);
+      transform: translateX(-50%);
+      border-radius: 9999px;
+      animation: 10s ease-in-out 0s infinite alternate none running border-glow-scale;
+      background: linear-gradient(135deg, rgb(122, 105, 249), rgb(242, 99, 120), rgb(245, 131, 63));
+    }
+
+    @keyframes border-glow-translate {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(400%); }
+    }
+
+    @keyframes border-glow-scale {
+      0% { transform: scaleX(1) translateX(-50%); }
+      100% { transform: scaleX(1.8) translateX(-50%); }
+    }
+
+    .connect-btn .btn-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+      background: rgba(10, 10, 10, 0.9);
+      border-radius: 9999px;
+      padding: 14px 28px 14px 18px;
+      width: 100%;
+    }
+
+    .connect-btn .star-wrap {
+      position: relative;
+      display: inline-flex;
+      transition: transform 0.5s ease;
+    }
+
+    .connect-btn:hover .star-wrap {
+      transform: scale(1.05) rotate(360deg);
+    }
+
+    .connect-btn .star-wrap svg {
+      opacity: 0.8;
+      animation: 14s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s infinite alternate none running star-rotate;
+    }
+
+    @keyframes star-rotate {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+
+    .connect-btn .star-wrap .star-shine {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      filter: blur(16px);
+      opacity: 0;
+      animation: 14s ease-in-out 0s infinite alternate none running star-shine;
+      background: linear-gradient(135deg, rgb(59, 196, 242), rgb(122, 105, 249), rgb(242, 99, 120), rgb(245, 131, 63));
+    }
+
+    @keyframes star-shine {
+      0% { opacity: 0; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0; }
+    }
+
+    .connect-btn .btn-label {
+      margin-left: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.5));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: transform 0.3s ease;
+    }
+
+    .connect-btn:hover .btn-label {
+      transform: scale(1.05);
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    /* From Uiverse.io by MuhammadHasann */
     .button-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 30px;
+      gap: 8px;
     }
 
-    .button-link {
+    .button {
+      --black-700: hsla(0 0% 12% / 1);
+      --border_radius: 9999px;
+      --transtion: 0.3s ease-in-out;
+      --offset: 2px;
+
+      cursor: pointer;
+      position: relative;
+
       display: flex;
       align-items: center;
-      gap: 10px;
-      width: 250px;
-      padding: 14px 20px;
-      margin: 8px 0;
-      background-color: #fff;
-      border-radius: 30px;
-      box-shadow: 0 4px 0 #000;
+      gap: 0.5rem;
+
+      transform-origin: center;
+
+      padding: 0.65rem 1.4rem;
+      background-color: transparent;
+
+      border: none;
+      border-radius: var(--border_radius);
+      transform: scale(calc(1 + (var(--active, 0) * 0.1)));
+
+      transition: transform var(--transtion);
+
+      width: 240px;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      color: #000;
-      transition: all 0.2s ease;
+      font-family: inherit;
     }
 
-    .button-link:hover {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #000;
+    .button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 100%;
+      height: 100%;
+      background-color: var(--black-700);
+
+      border-radius: var(--border_radius);
+      box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
+        0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+        0 0 0 calc(var(--active, 0) * 0.375rem) hsl(260 97% 50% / 0.75);
+
+      transition: all var(--transtion);
+      z-index: 0;
     }
 
-    .button-link2 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 250px;
-      padding: 14px 20px;
-      margin: 8px 0;
-      background-color: #cc9a60;
-      border-radius: 30px;
-      box-shadow: 0 4px 0 #000;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 16px;
-      color: #3f3f3f;
-      transition: all 0.2s ease;
+    .button::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 100%;
+      height: 100%;
+      background-color: hsla(260 97% 61% / 0.75);
+      background-image: radial-gradient(
+          at 51% 89%,
+          hsla(266, 45%, 74%, 1) 0px,
+          transparent 50%
+        ),
+        radial-gradient(at 100% 100%, hsla(266, 36%, 60%, 1) 0px, transparent 50%),
+        radial-gradient(at 22% 91%, hsla(266, 36%, 60%, 1) 0px, transparent 50%);
+      background-position: top;
+
+      opacity: var(--active, 0);
+      border-radius: var(--border_radius);
+      transition: opacity var(--transtion);
+      z-index: 2;
     }
 
-    .button-link2:hover {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #000;
+    .button:is(:hover, :focus-visible) {
+      --active: 1;
+    }
+    .button:active {
+      transform: scale(1);
     }
 
-    .button-icon {
-      width: 20px;
-      height: 20px;
+    /* Dots border — HIDDEN by default, only shows on hover */
+    .button .dots_border {
+      --size_border: calc(100% + 2px);
+
+      overflow: hidden;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: var(--size_border);
+      height: var(--size_border);
+      background-color: transparent;
+
+      border-radius: var(--border_radius);
+      z-index: -10;
+
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
+    .button:is(:hover, :focus-visible) .dots_border {
+      opacity: 1;
+    }
+
+    .button .dots_border::before {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transform-origin: left;
+      transform: rotate(0deg);
+
+      width: 100%;
+      height: 2rem;
+      background-color: white;
+
+      mask: linear-gradient(transparent 0%, white 120%);
+      animation: rotate 2s linear infinite;
+    }
+
+    .button .text_button {
+      position: relative;
+      z-index: 10;
+      font-size: 0.85rem;
+      color: #ffffff;
+    }
+
+    .button .platform-icon {
+      position: relative;
+      z-index: 10;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1);
+    }
+
+    /* ===== FOOTER ===== */
     .footer {
-      margin: 40px 0 20px;
-      font-size: 16px;
-      color: #000;
+      margin: 40px 0 24px;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.4);
     }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
   </style>
 </head>
 <body>
 
-  <img src="media/Snapchat-1950127112.jpg" class="profile-img" alt="Profile Picture">
-  <h1>Aishwanth</h1>
-  <p class="email">aishwanth.dev@gmail.com</p>
-  <p class="quote">You don’t need everyone to believe.<br> Just the server to stay up.</p>
-
-
-  <div class="button-container">
-    <a href="connect.html" class="button-link2">
-      <img src="https://img.icons8.com/ios-glyphs/30/000000/phone.png" class="button-icon">
-      Lets Connect
-    </a>
-    <a href="https://www.linkedin.com/in/aishwanth-m-s-205281376" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/linkedin.png" class="button-icon" >
-      LinkedIn
-    </a>
-    <a href="https://x.com/Aishwanth_" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/twitterx.png" class="button-icon" />
-      X (Twitter)
-    </a>
-    <a href="https://play.google.com/store/apps/developer?id=16x+Studios&hl=en_IN" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/google-play.png" class="button-icon" />
-      Playstore
-    </a>
-    <a href="https://huggingface.co/Ais203" class="button-link">
-      <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" class="button-icon" />
-      Hugging Face
-    </a>
-    <a href="https://github.com/aishwanth-dev" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/github.png" class="button-icon" />
-      GitHub
-    </a>
-    <a href="https://www.geeksforgeeks.org/user/aishwan5ykv/" class="button-link">
-      <img src="https://img.icons8.com/ios/50/000000/code.png" class="button-icon" />
-      GeeksForGeeks
-    </a>
-    <a href="https://www.freelancer.in/u/Aishwanth" class="button-link">
-      <img src="https://images.icon-icons.com/2648/PNG/512/logo_freelancer_com_icon_160826.png" class="button-icon" />
-      Freelancer
-    </a>
-    <a href="https://www.kaggle.com/aishwanth" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/k.png" class="button-icon" />
-      Kaggle
-    </a>
-    <a href="https://leetcode.com/u/5HWeLBU21E/" class="button-link">
-      <img src="https://img.icons8.com/external-tal-revivo-filled-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-filled-tal-revivo.png" class="button-icon" />
-      LeetCode
-    </a>
-    <a href="https://bsky.app/profile/aishwanth.bsky.social" class="button-link">
-      <img src="https://img.icons8.com/badges/512/bluesky.png" class="button-icon" />
-      Bluesky
-    </a>
-    <a href="https://www.pinterest.com/aishwanth_/" class="button-link">
-      <img src="https://img.icons8.com/ios-filled/50/pinterest.png" class="button-icon" />
-      Pinterest
-    </a>
+  <!-- LOADING SCREEN (2 seconds on page load) -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader">
+      <div class="blackhole">
+        <div class="blackhole-circle"></div>
+        <div class="blackhole-disc"></div>
+      </div>
+      <div class="curve">
+        <svg viewBox="0 0 500 500">
+          <path id="loading" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"></path>
+          <text width="500">
+            <textPath xlink:href="#loading">
+              loading...
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div class="footer">
-    Let's Collab 🩷
+  <!-- LINK-CLICK LOADING SCREEN -->
+  <div class="link-loading-overlay" id="linkLoadingOverlay">
+    <div class="loader">
+      <div class="blackhole">
+        <div class="blackhole-circle"></div>
+        <div class="blackhole-disc"></div>
+      </div>
+      <div class="curve">
+        <svg viewBox="0 0 500 500">
+          <path id="loading2" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97"></path>
+          <text width="500">
+            <textPath xlink:href="#loading2">
+              loading...
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
   </div>
+
+  <!-- Fixed GIF Background -->
+  <div class="gif-bg">
+    <img src="https://i.pinimg.com/originals/be/d2/59/bed2591f723244f07bc4bf382f97103c.gif" class="bg-main" alt="Background">
+  </div>
+
+  <div class="content-wrapper" id="contentWrapper">
+
+    <!-- Profile Image with its own glass pill -->
+    <div class="glass-pill-pfp">
+      <img src="media/Snapchat-1950127112.jpg" class="profile-img" alt="Profile Picture">
+    </div>
+
+    <!-- Each text line in its own glass pill -->
+    <div class="info-stack">
+      <div class="glass-line">
+        <h1>Aishwanth</h1>
+      </div>
+
+      <div class="glass-line">
+        <span class="btn-shine">Founder - Juskoe and intern @omgx.ai.pvt.ltd</span>
+      </div>
+
+      <div class="glass-line">
+        <p class="email">aishwanth.dev@gmail.com</p>
+      </div>
+
+      <div class="glass-line-quote">
+        <p class="quote">You don't need everyone to believe.<br>Just the server to stay up.</p>
+      </div>
+    </div>
+
+    <div class="connect-btn-wrapper">
+      <a href="mailto:aishwanth.dev@gmail.com" class="connect-btn">
+        <!-- Glow background -->
+        <span class="glow-bg">
+          <span class="glow-blob"></span>
+        </span>
+
+        <!-- Animated border glow -->
+        <span class="glow-border">
+          <span class="glow-streak"></span>
+        </span>
+
+        <!-- Inner content -->
+        <span class="btn-inner">
+          <span class="star-wrap">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="animation: 14s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s infinite alternate none running star-rotate;"
+            >
+              <path
+                d="M11.5268 2.29489C11.5706 2.20635 11.6383 2.13183 11.7223 2.07972C11.8062 2.02761 11.903 2 12.0018 2C12.1006 2 12.1974 2.02761 12.2813 2.07972C12.3653 2.13183 12.433 2.20635 12.4768 2.29489L14.7868 6.97389C14.939 7.28186 15.1636 7.5483 15.4414 7.75035C15.7192 7.95239 16.0419 8.08401 16.3818 8.13389L21.5478 8.88989C21.6457 8.90408 21.7376 8.94537 21.8133 9.00909C21.8889 9.07282 21.9452 9.15644 21.9758 9.2505C22.0064 9.34456 22.0101 9.4453 21.9864 9.54133C21.9627 9.63736 21.9126 9.72485 21.8418 9.79389L18.1058 13.4319C17.8594 13.672 17.6751 13.9684 17.5686 14.2955C17.4622 14.6227 17.4369 14.9708 17.4948 15.3099L18.3768 20.4499C18.3941 20.5477 18.3835 20.6485 18.3463 20.7406C18.3091 20.8327 18.2467 20.9125 18.1663 20.9709C18.086 21.0293 17.9908 21.0639 17.8917 21.0708C17.7926 21.0777 17.6935 21.0566 17.6058 21.0099L12.9878 18.5819C12.6835 18.4221 12.345 18.3386 12.0013 18.3386C11.6576 18.3386 11.3191 18.4221 11.0148 18.5819L6.3978 21.0099C6.31013 21.0563 6.2112 21.0772 6.11225 21.0701C6.0133 21.0631 5.91832 21.0285 5.83809 20.9701C5.75787 20.9118 5.69563 20.8321 5.65846 20.7401C5.62128 20.6482 5.61066 20.5476 5.6278 20.4499L6.5088 15.3109C6.567 14.9716 6.54178 14.6233 6.43534 14.2959C6.32889 13.9686 6.14441 13.672 5.8978 13.4319L2.1618 9.79489C2.09039 9.72593 2.03979 9.63829 2.01576 9.54197C1.99173 9.44565 1.99524 9.34451 2.02588 9.25008C2.05652 9.15566 2.11307 9.07174 2.18908 9.00788C2.26509 8.94402 2.3575 8.90279 2.4558 8.88889L7.6208 8.13389C7.96106 8.08439 8.28419 7.95295 8.56238 7.75088C8.84058 7.54881 9.0655 7.28216 9.2178 6.97389L11.5268 2.29489Z"
+                fill="url(#paint0_linear_171_8212)"
+                stroke="url(#paint1_linear_171_8212)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_171_8212"
+                  x1="-0.5"
+                  y1="9"
+                  x2="15.5"
+                  y2="-1.5"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#7A69F9"></stop>
+                  <stop offset="0.575" stop-color="#F26378"></stop>
+                  <stop offset="1" stop-color="#F5833F"></stop>
+                </linearGradient>
+                <linearGradient
+                  id="paint1_linear_171_8212"
+                  x1="-0.5"
+                  y1="9"
+                  x2="15.5"
+                  y2="-1.5"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#7A69F9"></stop>
+                  <stop offset="0.575" stop-color="#F26378"></stop>
+                  <stop offset="1" stop-color="#F5833F"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span
+              class="star-shine"
+              style="animation: 14s ease-in-out 0s infinite alternate none running star-shine;
+                     background: linear-gradient(135deg, rgb(59, 196, 242), rgb(122, 105, 249), rgb(242, 99, 120), rgb(245, 131, 63));"
+            ></span>
+          </span>
+          <span class="btn-label">Let's Connect</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- Link Buttons (From Uiverse.io by MuhammadHasann) — sparkle SVGs removed, just icon + text -->
+    <div class="button-container">
+
+      <a href="https://www.linkedin.com/in/aishwanth-m-s-205281376" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/linkedin.png" class="platform-icon" alt="LinkedIn">
+        <span class="text_button">LinkedIn</span>
+      </a>
+
+      <a href="https://x.com/Aishwanth_" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/twitterx.png" class="platform-icon" alt="X">
+        <span class="text_button">X (Twitter)</span>
+      </a>
+
+      <a href="https://play.google.com/store/apps/developer?id=16x+Studios&hl=en_IN" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/google-play.png" class="platform-icon" alt="Play Store">
+        <span class="text_button">Playstore</span>
+      </a>
+
+      <a href="https://huggingface.co/Ais203" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" class="platform-icon" alt="Hugging Face" style="filter: none;">
+        <span class="text_button">Hugging Face</span>
+      </a>
+
+      <a href="https://github.com/aishwanth-dev" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/github.png" class="platform-icon" alt="GitHub">
+        <span class="text_button">GitHub</span>
+      </a>
+
+      <a href="https://www.geeksforgeeks.org/user/aishwan5ykv/" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios/50/000000/code.png" class="platform-icon" alt="GeeksForGeeks">
+        <span class="text_button">GeeksForGeeks</span>
+      </a>
+
+      <a href="https://www.freelancer.in/u/Aishwanth" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://images.icon-icons.com/2648/PNG/512/logo_freelancer_com_icon_160826.png" class="platform-icon" alt="Freelancer">
+        <span class="text_button">Freelancer</span>
+      </a>
+
+      <a href="https://www.kaggle.com/aishwanth" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/k.png" class="platform-icon" alt="Kaggle">
+        <span class="text_button">Kaggle</span>
+      </a>
+
+      <a href="https://leetcode.com/u/5HWeLBU21E/" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/external-tal-revivo-filled-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-filled-tal-revivo.png" class="platform-icon" alt="LeetCode">
+        <span class="text_button">LeetCode</span>
+      </a>
+
+      <a href="https://bsky.app/profile/aishwanth.bsky.social" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/badges/512/bluesky.png" class="platform-icon" alt="Bluesky">
+        <span class="text_button">Bluesky</span>
+      </a>
+
+      <a href="https://www.pinterest.com/aishwanth_/" class="button" onclick="showLinkLoading(event, this.href)">
+        <div class="dots_border"></div>
+        <img src="https://img.icons8.com/ios-filled/50/pinterest.png" class="platform-icon" alt="Pinterest">
+        <span class="text_button">Pinterest</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      Let's Collab 🩷
+    </div>
+
+  </div>
+
+  <script>
+    // Initial loading screen — show for 2 seconds then fade out
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var overlay = document.getElementById('loadingOverlay');
+        overlay.classList.add('hidden');
+        document.getElementById('contentWrapper').classList.add('visible');
+      }, 2000);
+    });
+
+    // Link-click loading — show loader for 2 seconds, then navigate
+    function showLinkLoading(event, url) {
+      event.preventDefault();
+      var linkOverlay = document.getElementById('linkLoadingOverlay');
+      linkOverlay.classList.add('active');
+      setTimeout(function() {
+        window.location.href = url;
+      }, 2000);
+    }
+  </script>
+
 </body>
 </html>
